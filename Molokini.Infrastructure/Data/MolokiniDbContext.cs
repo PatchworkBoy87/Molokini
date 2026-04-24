@@ -11,6 +11,7 @@ public class MolokiniDbContext : DbContext
 
     public DbSet<WasteEntry> WasteEntries => Set<WasteEntry>();
     public DbSet<WasteJob> WasteJobEntries => Set<WasteJob>();
+    public DbSet<User> Users => Set<User>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

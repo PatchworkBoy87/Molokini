@@ -26,25 +26,11 @@ public static class DTOMapper
         };
     }
 
-    public static PagedResult<WasteEntryDto> ToPagedDto(this PagedResult<WasteEntry> entity)
+    // To IEnumerable of DTOs
+    public static IEnumerable<TDestination> ToDtos<TSource, TDestination>(
+    this IEnumerable<TSource> source,
+    Func<TSource, TDestination> map)
     {
-        return new PagedResult<WasteEntryDto>
-        {
-            Items = entity.Items.Select(ToDto),
-            TotalCount = entity.TotalCount,
-            PageNumber = entity.PageNumber,
-            PageSize = entity.PageSize,
-        };
-    }
-
-    public static PagedResult<WasteJobEntryDto> ToPagedDto(this PagedResult<WasteJob> entity)
-    {
-        return new PagedResult<WasteJobEntryDto>
-        {
-            Items = entity.Items.Select(ToDto),
-            TotalCount = entity.TotalCount,
-            PageNumber = entity.PageNumber,
-            PageSize = entity.PageSize,
-        };
+        return source.Select(map);
     }
 }
