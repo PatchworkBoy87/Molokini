@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="Molokini.API/Molokini.API.csproj" />
+  <Project Path="Molokini.Core/Molokini.Core.csproj" />
+  <Project Path="Molokini.Infrastructure/Molokini.Infrastructure.csproj" />
+  <Project Path="Molokini.Shared/Molokini.Shared.csproj" />
+</Solution>

@@ -1,0 +1,10 @@
+[
+    {
+        "name": "Launch C# App",
+        "type": "coreclr",
+        "request": "launch",
+        "program": "${workspaceFolder}/bin/Debug/net8.0/YourApp.dll",
+        "cwd": "${workspaceFolder}",
+        "stopAtEntry": false,
+    },
+]
