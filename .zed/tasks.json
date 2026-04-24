@@ -1,8 +1,0 @@
-[
-    {
-        "label": "dotnet build",
-        "command": "dotnet",
-        "args": ["build"],
-        "use_new_terminal": false,
-    },
-]
