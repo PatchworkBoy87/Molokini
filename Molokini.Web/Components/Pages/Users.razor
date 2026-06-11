@@ -1,0 +1,28 @@
+<MudText Typo="Typo.h3">Users</MudText>
+<MudTable>
+    <MudTableHead>
+        <MudTh>Name</MudTh>
+        <MudTh>Email</MudTh>
+        <MudTh>Active</MudTh>
+    </MudTableHead>
+    <MudTableBody>
+        @foreach (var user in Users)
+        {
+            <MudTr>
+                <MudTd>@user.Name</MudTd>
+                <MudTd>@user.Email</MudTd>
+                <MudTd>@user.Active</MudTd>
+            </MudTr>
+        }
+    </MudTableBody>
+</MudTable>
+
+@code {
+    private List<User> Users { get; set; } = new List<User>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        // Fetch users from the API
+
+    }
+}
