@@ -24,13 +24,38 @@ namespace Molokini.Core.Services
         public async Task<UserDTO> CreateUserAsync(CreateUserRequest user)
         {
             // Create User code
-            return user;
+            var newUser = new UserDTO()
+            {
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                Email = user.Email,
+                Password = user.Password,
+                Roles = user.Roles
+            };
+
+            // Send this UserDTO to the repository
+            // Return the created UserDTO
+
+            return newUser;
         }
 
-        public async Task<UserDTO> UpdateUserAsync(UserDTO user)
+        public async Task<UserDTO> UpdateUserAsync(UpdateUserRequest user)
         {
             // Update User code
-            return user;
+            var updatedUser = new UserDTO()
+           {
+               Id = user.Id,
+               FirstName = user.FirstName,
+               LastName = user.LastName,
+               Email = user.Email,
+               Password = user.Password,
+               Roles = user.Roles
+           };
+
+            // Send this UserDTO to the repository
+            // Return the updated UserDTO
+
+            return updatedUser;
         }
 
         public async Task SoftDeleteUserAsync(Guid id)
