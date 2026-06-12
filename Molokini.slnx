@@ -1,0 +1,7 @@
+<Solution>
+  <ProjectReference Include="Molokini.Web\Molokini.Web.csproj" />
+  <ProjectReference Include="Molokini.Shared\Molokini.Shared.csproj" />
+  <ProjectReference Include="Molokini.API\Molokini.API.csproj" />
+  <ProjectReference Include="Molokini.Core\Molokini.Core.csproj" />
+  <ProjectReference Include="Molokini.Infrastructure\Molokini.Infrastructure.csproj" />
+</Solution>

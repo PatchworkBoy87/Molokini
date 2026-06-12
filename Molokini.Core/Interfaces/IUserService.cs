@@ -4,10 +4,10 @@ namespace Molokini.Core.Interfaces
 {
     public interface IUserService
     {
-        Task<IEnumerable<User>> GetUsersAsync();
-        Task<User> GetUserByIdAsync(Guid id);
-        Task<User> CreateUserAsync(User user);
-        Task<User> UpdateUserAsync(User user);
+        Task<IEnumerable<UserDTO>> GetUsersAsync();
+        Task<UserDTO> GetUserByIdAsync(Guid id);
+        Task<UserDTO> CreateUserAsync(CreateUserRequest user);
+        Task<UserDTO> UpdateUserAsync(UserDTO user);
         Task SoftDeleteUserAsync(Guid id);
         Task HardDeleteUserAsync(Guid id);
     }
