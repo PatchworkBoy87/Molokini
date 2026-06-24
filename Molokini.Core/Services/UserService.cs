@@ -1,29 +1,56 @@
 using Molokini.Core.Interfaces;
 using Molokini.Core.Models;
 using Molokini.Shared.DTOs.Requests;
+using Molokini.Infrastructure.Repositories;
 
 namespace Molokini.Core.Services
 {
     public class UserService : IUserService
     {
+        private readonly UserRepository _userRepository;
+
+        public UserService(UserRepository userRepository)
+        {
+            _userRepository = userRepository;
+        }
+
         public async Task<IEnumerable<UserDTO>> GetUsersAsync()
         {
-            // Get Users code
+            List<User> users = await _userRepository.GetUsersAsync();
+
+            var userDTOs = users.Select(u => new UserDTO
+            {
+                Id = u.Id,
+                FirstName = u.FirstName,
+                LastName = u.LastName,
+                Email = u.Email,
+                IsActive = u.IsActive,
+                IsAdmin = u.IsAdmin
+            });
+
             await Task.CompletedTask;
-            return new List<UserDTO>();
+            return userDTOs;
         }
 
         public async Task<UserDTO> GetUserByIdAsync(Guid id)
         {
-            // Get User code
-            UserDTO selectedUser = new UserDTO { Id = id, FirstName = "First", LastName = "Person", Email = "person@email.com", IsActive = true, IsAdmin = true };
-            await Task.CompletedTask;
+            User user = await _userRepository.GetUserByIdAsync(id);
+
+            UserDTO selectedUser = new UserDTO
+            {
+                Id = user.Id,
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                Email = user.Email,
+                IsActive = user.IsActive,
+                IsAdmin = user.IsAdmin
+            };
+
             return selectedUser;
         }
 
         public async Task<UserDTO> CreateUserAsync(CreateUserRequest user)
         {
-            // Create User code
             var newUser = new UserDTO()
             {
                 FirstName = user.FirstName,
@@ -33,40 +60,37 @@ namespace Molokini.Core.Services
                 Roles = user.Roles
             };
 
-            // Send this UserDTO to the repository
-            // Return the created UserDTO
+            var createdUser = await _userRepository.CreateUserAsync(newUser);
 
             return newUser;
         }
 
         public async Task<UserDTO> UpdateUserAsync(UpdateUserRequest user)
         {
-            // Update User code
             var updatedUser = new UserDTO()
-           {
-               Id = user.Id,
-               FirstName = user.FirstName,
-               LastName = user.LastName,
-               Email = user.Email,
-               Password = user.Password,
-               Roles = user.Roles
-           };
+            {
+                Id = user.Id,
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                Email = user.Email,
+                Password = user.Password,
+                Roles = user.Roles
+            };
 
-            // Send this UserDTO to the repository
-            // Return the updated UserDTO
+            var updatedUser = await _userRepository.UpdateUserAsync(updatedUser);
 
             return updatedUser;
         }
 
         public async Task SoftDeleteUserAsync(Guid id)
         {
-            // Soft Delete User code
+            await _userRepository.SoftDeleteUserAsync(id);
             await Task.CompletedTask;
         }
 
         public async Task HardDeleteUserAsync(Guid id)
         {
-            // Hard Delete User code
+            await _userRepository.HardDeleteUserAsync(id);
             await Task.CompletedTask;
         }
     }
